@@ -22,7 +22,7 @@ function te_startup_goods()
 	-- This is a table containing all the basic prices of Trade Goods.
 		--If saturation if on in parameters
 		if settings.global["te_saturation"].value == true then
-			global.trade_goods = {
+			storage.trade_goods = {
 				["power-armor"] = 50000,
 				["power-armor-mk2"] = 200000,
 				["Mk1_kit"] = 55000,
@@ -31,7 +31,7 @@ function te_startup_goods()
 			}	
 		else 
 		--Special prices if saturation is off - penalize items, especially with big stacks
-			global.trade_goods = {
+			storage.trade_goods = {
 				["power-armor"] = 40000,
 				["power-armor-mk2"] = 160000,
 				["Mk1_kit"] = 32500,
@@ -43,24 +43,24 @@ end
 
 script.on_init(function()
 	local settings_irate = settings.global["te_interest_rate"].value
-	--global.irate = settings_irate
+	--storage.irate = settings_irate
 
-	if global.AutoBuy_tokens == nil then
-		global.AutoBuy_tokens = false
+	if storage.AutoBuy_tokens == nil then
+		storage.AutoBuy_tokens = false
 	end
 	
-	if global.balance == nil then
+	if storage.balance == nil then
 		local days_passed = round (game.tick/25000,0)
 		if days_passed > 365 then
 			days_passed = 365
 		end
 		
 		local settings_balance = settings.startup["te_initial_debt"].value
-		global.balance = -1 * math.max(settings_balance,settings_balance * settings_irate^days_passed)	
+		storage.balance = -1 * math.max(settings_balance,settings_balance * settings_irate^days_passed)
 	end
 	
-	prbalance = global.balance
-	game.print({'TE.TE_Initiated', comma_value(round(global.balance,2)), settings_irate}, {r=0.5, g=0.5, b=1})
+	prbalance = storage.balance
+	game.print({'TE.TE_Initiated', comma_value(round(storage.balance,2)), settings_irate}, {r=0.5, g=0.5, b=1})
 	game.print({'TE.Days_since_start', round(game.tick/25000,0)}, {r=0.5, g=0.5, b=1})
 
 	--i_gui()
@@ -73,8 +73,8 @@ end)
 script.on_event({defines.events.on_player_created},
 	function ()
 	local settings_irate = settings.global["te_interest_rate"].value
-	game.print({'TE.TE_Initiated', comma_value(round(global.balance,2)), settings_irate}, {r=0.5, g=0.5, b=1})
-	--game.print("Trade Empire mod inititated. " .. " Starting debt: " .. comma_value(round(global.balance,2)) .. ", Interest rate: " .. settings_irate, {r=0.5, g=0.5, b=1})
+	game.print({'TE.TE_Initiated', comma_value(round(storage.balance,2)), settings_irate}, {r=0.5, g=0.5, b=1})
+	--game.print("Trade Empire mod inititated. " .. " Starting debt: " .. comma_value(round(storage.balance,2)) .. ", Interest rate: " .. settings_irate, {r=0.5, g=0.5, b=1})
 	--game.print("Days since map start - used for debt recalculation if mod is loaded into existing map: " .. round(game.tick/25000,0), {r=0.5, g=0.5, b=1})
 	u_gui(true)
 	end
@@ -88,9 +88,9 @@ end)
 
 script.on_configuration_changed (function()
 	--migration of debt to balance
-	if global.debt ~= nil and global.balance == nil then	
-		global.balance = -1 * global.debt
-		global.debt = nil
+	if storage.debt ~= nil and storage.balance == nil then
+		storage.balance = -1 * storage.debt
+		storage.debt = nil
 		for _, player in pairs(game.connected_players) do
 			player.gui.top.debt.destroy()
 		end
@@ -106,11 +106,11 @@ script.on_configuration_changed (function()
 		end
 	end
 	
-	if global.AutoBuy_tokens == nil then
-		global.AutoBuy_tokens = false
+	if storage.AutoBuy_tokens == nil then
+		storage.AutoBuy_tokens = false
 	end
 	
-	global.irate = nil
+	storage.irate = nil
 	te_startup_goods()
 	u_gui (true)
 end)
@@ -143,8 +143,8 @@ function u_gui(supress)
 				end	
 			end
 			
-			global.balance = round (global.balance, 2)
-			prbalance = comma_value (global.balance)
+			storage.balance = round (storage.balance, 2)
+			prbalance = comma_value (storage.balance)
 			topGui.TEflow.TEbalance.caption = {'gui.l', prbalance .. " CR"}
 			
 			
@@ -252,7 +252,7 @@ function TE_Open_Shop()
 								type = "checkbox",
 								name = "Item_1_AutoBuy",
 								caption="Autobuy this item",
-								state=global.AutoBuy_tokens,
+								state=storage.AutoBuy_tokens,
 								tooltip="Will automatically buy this item, whenever you have enough money.",
 								}
 															
@@ -434,7 +434,7 @@ function TE_Open_Prices()
 						tooltip={'TE.pricetable_finalprice_tt'}
 						}	
 						
-					for trade_good, price in pairs(global.trade_goods) do
+					for trade_good, price in pairs(storage.trade_goods) do
 						
 						PrGui.TE_Prices.MainFrame.MainTable.add{
 						type = "label",
@@ -472,7 +472,7 @@ function TE_Open_Prices()
 						caption=saturation_printed.."%"
 						}
 						
-						local final_price = global.trade_goods[trade_good] * (1 + (mb/100)) * saturation * stack
+						local final_price = storage.trade_goods[trade_good] * (1 + (mb/100)) * saturation * stack
 						PrGui.TE_Prices.MainFrame.MainTable.add{
 						type = "label",
 						name = trade_good .. "_finalprice",
@@ -496,7 +496,7 @@ function TE_Open_Prices()
 end
 
 function balance_check(cost)
-	if global.balance - cost >= 0 then
+	if storage.balance - cost >= 0 then
 		return true
 		else 
 		game.print({'TE.Not_enough_money'})
@@ -519,7 +519,7 @@ local i_price = 100000
 			
 				local final_count = i_count-count
 				--game.print(final_count)
-				global.balance=global.balance-(final_count * i_price)
+				storage.balance=storage.balance-(final_count * i_price)
 				game.print({'TE.Tokens_purchased',final_count})	
 			if final_count ~= i_count then 
 				game.print({'TE.Inv_not_enough_place'})
@@ -528,9 +528,9 @@ local i_price = 100000
 		end
 		u_gui(true)
 	else
-		local possible_count = math.floor(global.balance/i_price)
+		local possible_count = math.floor(storage.balance/i_price)
 		--game.print (possible_count)
-		if global.AutoBuy_tokens then			
+		if storage.AutoBuy_tokens then
 			if possible_count > 0 then
 				game.print({'TE.Tokens_autopurchased'})
 				Buy_coin(possible_count,player)
@@ -545,7 +545,7 @@ local f_price = i_price * count
 local result=balance_check(f_price)
 --game.print(result)
 	if result then
-		global.balance=global.balance-f_price
+		storage.balance=storage.balance-f_price
 		--game.forces["enemy"].evolution_factor=0.04
 		game.forces["enemy"].evolution_factor=game.forces["enemy"].evolution_factor-(0.05 * count)
 		game.print({'TE.Evo_purchased', 5*count})
@@ -585,12 +585,12 @@ script.on_event(defines.events.on_gui_click, function(event)
 	elseif last_clicked == "Item_1_AutoBuy" then
 		local player = game.players[event.player_index]	
 		if player.gui.center.TE_Shop.Line_1.Item_1.Flow_1.Item_1_AutoBuy.state then			
-			global.AutoBuy_tokens = true
+			storage.AutoBuy_tokens = true
 		end
 		if not player.gui.center.TE_Shop.Line_1.Item_1.Flow_1.Item_1_AutoBuy.state then			
-			global.AutoBuy_tokens = false
+			storage.AutoBuy_tokens = false
 		end		
-		if global.AutoBuy_tokens then 
+		if storage.AutoBuy_tokens then
 			Buy_coin("Auto",player)
 		end
 	elseif last_clicked == "Item_2_Buy1" then
@@ -617,12 +617,12 @@ script.on_event({defines.events.on_tick},
 							irate = 1.01
 						end
 					
-					if global.balance <= 0 then
-						global.balance = global.balance * irate
+					if storage.balance <= 0 then
+						storage.balance = storage.balance * irate
 						player.print ({'TE.INT_debt', irate})
 					else
 						local irate_positive = (irate-1)/10 + 1 
-						global.balance = global.balance * irate_positive
+						storage.balance = storage.balance * irate_positive
 						player.print ({'TE.INT_positive', irate_positive})
 					end	
 				Buy_coin("Auto",player)
@@ -685,10 +685,10 @@ script.on_event({defines.events.on_rocket_launched},
 					u_gui(true)
 				end
 		
-				if global.trade_goods[i] ~= nil then
+				if storage.trade_goods[i] ~= nil then
 					local saturation = calculate_saturation(i,c,player)
 					--game.print ("Debug - Local saturaion " .. saturation)
-					total_earned = total_earned + global.trade_goods[i] * c * (1 + (maketing_bonus/100)) * saturation
+					total_earned = total_earned + storage.trade_goods[i] * c * (1 + (maketing_bonus/100)) * saturation
 					
 					if (1 + (maketing_bonus/100)) * saturation <= 0.5 then
 						game.print ({'TE.warning_low_price'})
@@ -710,9 +710,9 @@ script.on_event({defines.events.on_rocket_launched},
 		end
 			
 		for index,player in pairs(game.connected_players) do
-			local previous_balance = global.balance
-			global.balance = global.balance + total_earned
-				if global.balance >= 0 and previous_balance < 0 then
+			local previous_balance = storage.balance
+			storage.balance = storage.balance + total_earned
+				if storage.balance >= 0 and previous_balance < 0 then
 					if (#game.players <= 1) then
 						game.show_message_dialog{text = {"TE.WIN"}}
 					else

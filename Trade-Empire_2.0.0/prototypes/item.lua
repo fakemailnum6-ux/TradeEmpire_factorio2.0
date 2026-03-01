@@ -20,8 +20,8 @@ Mk2_kit.subgroup = "packed_trade_good"
 local recipe_mk2 = table.deepcopy(data.raw.recipe["power-armor-mk2"])
 recipe_mk2.enabled = true
 recipe_mk2.name = "Mk2_kit"
-recipe_mk2.ingredients = {{"personal-laser-defense-equipment",6},{"exoskeleton-equipment",3},{"power-armor-mk2",1},{"energy-shield-mk2-equipment",3},{"battery-mk2-equipment",4},{"fusion-reactor-equipment",2}}
-recipe_mk2.result = "Mk2_kit"
+recipe_mk2.ingredients = {{type="item", name="personal-laser-defense-equipment", amount=6},{type="item", name="exoskeleton-equipment", amount=3},{type="item", name="power-armor-mk2", amount=1},{type="item", name="energy-shield-mk2-equipment", amount=3},{type="item", name="battery-mk2-equipment", amount=4},{type="item", name="fusion-reactor-equipment", amount=2}}
+recipe_mk2.results = {{type="item", name="Mk2_kit", amount=1}}
 
 data:extend{Mk2_kit,recipe_mk2}
 
@@ -48,8 +48,8 @@ Mk1_kit.subgroup = "packed_trade_good"
 local recipe_mk1 = table.deepcopy(data.raw.recipe["power-armor"])
 recipe_mk1.enabled = true
 recipe_mk1.name = "Mk1_kit"
-recipe_mk1.ingredients = {{"power-armor",1},{"exoskeleton-equipment",1},{"energy-shield-equipment",4},{"battery-equipment",5},{"solar-panel-equipment",15}}
-recipe_mk1.result = "Mk1_kit"
+recipe_mk1.ingredients = {{type="item", name="power-armor", amount=1},{type="item", name="exoskeleton-equipment", amount=1},{type="item", name="energy-shield-equipment", amount=4},{type="item", name="battery-equipment", amount=5},{type="item", name="solar-panel-equipment", amount=15}}
+recipe_mk1.results = {{type="item", name="Mk1_kit", amount=1}}
 
 data:extend{Mk1_kit,recipe_mk1}
 
@@ -76,8 +76,8 @@ Marketing_beacon.subgroup = "te_economy"
 local recipe_Marketing_beacon = table.deepcopy(data.raw.recipe["satellite"])
 recipe_Marketing_beacon.enabled = true
 recipe_Marketing_beacon.name = "Marketing_beacon"
-recipe_Marketing_beacon.ingredients = {{"accumulator",150},{"processing-unit",25},{"radar",50},{"rocket-fuel",25},{"solar-panel",150}}
-recipe_Marketing_beacon.result = "Marketing_beacon"
+recipe_Marketing_beacon.ingredients = {{type="item", name="accumulator", amount=150},{type="item", name="processing-unit", amount=25},{type="item", name="radar", amount=50},{type="item", name="rocket-fuel", amount=25},{type="item", name="solar-panel", amount=150}}
+recipe_Marketing_beacon.results = {{type="item", name="Marketing_beacon", amount=1}}
 
 data:extend{Marketing_beacon,recipe_Marketing_beacon}
 
@@ -129,7 +129,7 @@ recipe_Nuclear_battery.ingredients = {
       type = "fluid"
     }
 }
-recipe_Nuclear_battery.result = "Nuclear_battery"
+recipe_Nuclear_battery.results = {{type="item", name="Nuclear_battery", amount=1}}
 data:extend{Nuclear_battery,recipe_Nuclear_battery}
 
 
@@ -212,7 +212,7 @@ recipe_Productivity_module_4.ingredients = {
     },
 
 }
-recipe_Productivity_module_4.result = "productivity-module-4"
+recipe_Productivity_module_4.results = {{type="item", name="productivity-module-4", amount=1}}
 data:extend{Productivity_module_4,recipe_Productivity_module_4}
 
 --Final Ship!
@@ -245,6 +245,6 @@ recipe_MegaSpaceYacht.ingredients = {
 
 }
 
-recipe_MegaSpaceYacht.result = "MegaSpaceYacht"
+recipe_MegaSpaceYacht.results = {{type="item", name="MegaSpaceYacht", amount=1}}
 
 data:extend{MegaSpaceYacht,recipe_MegaSpaceYacht}
