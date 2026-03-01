@@ -1,0 +1,108 @@
+    ["productivity-module"] = {
+      category = "productivity",
+      default_request_amount = 10,
+      effect = {
+        consumption = {
+          bonus = 0.4
+        },
+        pollution = {
+          bonus = 0.05
+        },
+        productivity = {
+          bonus = 0.04
+        },
+        speed = {
+          bonus = -0.15
+        }
+      },
+      flags = {
+        "goes-to-main-inventory"
+      },
+      icon = "__base__/graphics/icons/productivity-module.png",
+      icon_size = 32,
+      limitation = {
+        "sulfuric-acid",
+        "basic-oil-processing",
+        "advanced-oil-processing",
+        "coal-liquefaction",
+        "heavy-oil-cracking",
+        "light-oil-cracking",
+        "solid-fuel-from-light-oil",
+        "solid-fuel-from-heavy-oil",
+        "solid-fuel-from-petroleum-gas",
+        "lubricant",
+        "wood",
+        "iron-plate",
+        "copper-plate",
+        "steel-plate",
+        "stone-brick",
+        "sulfur",
+        "plastic-bar",
+        "empty-barrel",
+        "uranium-processing",
+        "copper-cable",
+        "iron-stick",
+        "iron-gear-wheel",
+        "electronic-circuit",
+        "advanced-circuit",
+        "processing-unit",
+        "engine-unit",
+        "electric-engine-unit",
+        "uranium-fuel-cell",
+        "explosives",
+        "battery",
+        "flying-robot-frame",
+        "low-density-structure",
+        "rocket-fuel",
+        "rocket-control-unit",
+        "rocket-part",
+        "science-pack-1",
+        "science-pack-2",
+        "science-pack-3",
+        "military-science-pack",
+        "production-science-pack",
+        "high-tech-science-pack"
+      },
+      limitation_message_key = "production-module-usable-only-on-intermediates",
+      localised_description = {
+        "item-description.productivity-module"
+      },
+      name = "productivity-module",
+      order = "c[productivity]-a[productivity-module-1]",
+      stack_size = 50,
+      subgroup = "module",
+      tier = 1,
+      type = "module"
+    },
+
+
+
+
+
+
+    ["iron-ore"] = {
+      flags = {
+        "goes-to-main-inventory"
+      },
+      icon = "__base__/graphics/icons/iron-ore.png",
+      icon_size = 32,
+      name = "iron-ore",
+      order = "e[iron-ore]",
+      stack_size = 50,
+      subgroup = "raw-resource",
+      type = "item"
+    },
+
+["iron-plate"] = {
+      category = "smelting",
+      energy_required = 3.5,
+      ingredients = {
+        {
+          "iron-ore",
+          1
+        }
+      },
+      name = "iron-plate",
+      result = "iron-plate",
+      type = "recipe"
+    },
