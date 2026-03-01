@@ -10,7 +10,7 @@ Mk2_kit.icons= {
    {
       icon = "__Trade-Empire__/graphics/Trade-goods/Coin.png",
 	  icon_size = 128,
-	  scale = 0.12, 
+	  scale = 0.12,
 	  shift = {-8.5,8.5}
    },
 }
@@ -38,9 +38,9 @@ Mk1_kit.icons= {
    {
       icon = "__Trade-Empire__/graphics/Trade-goods/Coin.png",
 	  icon_size = 128,
-	  scale = 0.12, 
+	  scale = 0.12,
 	  shift = {-8.5,8.5}
-   },   
+   },
 }
 Mk1_kit.stack_size = 10
 Mk1_kit.subgroup = "packed_trade_good"
@@ -66,9 +66,9 @@ Marketing_beacon.icons= {
    {
       icon = "__Trade-Empire__/graphics/Trade-goods/Coin.png",
 	  icon_size = 128,
-	  scale = 0.12, 
+	  scale = 0.12,
 	  shift = {-8.5,8.5}
-   }, 
+   },
 }
 Marketing_beacon.stack_size = 1
 Marketing_beacon.subgroup = "te_economy"
@@ -95,7 +95,7 @@ Nuclear_battery.icons= {
 	{
       icon = "__Trade-Empire__/graphics/Trade-goods/Coin.png",
 	  icon_size = 128,
-	  scale = 0.12, 
+	  scale = 0.12,
 	  shift = {-8.5,8.5}
 	},
 }
@@ -162,41 +162,28 @@ Productivity_module_4.icons= {
    {
       icon = "__Trade-Empire__/graphics/Trade-goods/Coin.png",
 	  icon_size = 128,
-	  scale = 0.12, 
+	  scale = 0.12,
 	  shift = {-8.5,8.5}
    },
 }
 --[[effect = {
-        consumption = {
+        consumption = 2.0,
           bonus = 0.8
         },
-        pollution = {
+        pollution = 0.5,
           bonus = 0.1
         },
-        productivity = {
+        productivity = 0.13,
           bonus = 0.1
         },
-        speed = {
+        speed = -0.05
           bonus = -0.15
         }
       }]]
-	  
+
 	--Productivity_module_4.category = "productivity"
 
-	Productivity_module_4.effect = {
-        consumption = {
-          bonus = 2.0
-        },
-        pollution = {
-          bonus = 0.5
-        },
-        productivity = {
-          bonus = 0.13
-        },
-        speed = {
-          bonus = -0.05
-        },
-      }
+	Productivity_module_4.effect = { consumption = 2.0, pollution = 0.5, productivity = 0.13, speed = -0.05 }
 
 Productivity_module_4.subgroup = "te_orbit_good"
 
@@ -226,9 +213,9 @@ MegaSpaceYacht.icons= {
    {
       icon = "__Trade-Empire__/graphics/Trade-goods/Coin.png",
 	  icon_size = 128,
-	  scale = 0.07, 
+	  scale = 0.07,
 	  shift = {-8.5,8.5}
-   }, 
+   },
 }
 MegaSpaceYacht.stack_size = 1
 MegaSpaceYacht.subgroup = "te_orbit_good"
