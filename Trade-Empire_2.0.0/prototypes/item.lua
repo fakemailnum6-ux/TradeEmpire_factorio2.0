@@ -1,4 +1,4 @@
-local Mk2_kit = table.deepcopy(data.raw.item["empty-barrel"])
+local Mk2_kit = table.deepcopy(data.raw.item["barrel"])
 local Mk2_for_icon = table.deepcopy(data.raw.armor["power-armor-mk2"])
 Mk2_kit.name = "Mk2_kit"
 Mk2_kit.icons= {
@@ -20,14 +20,14 @@ Mk2_kit.subgroup = "packed_trade_good"
 local recipe_mk2 = table.deepcopy(data.raw.recipe["power-armor-mk2"])
 recipe_mk2.enabled = true
 recipe_mk2.name = "Mk2_kit"
-recipe_mk2.ingredients = {{type="item", name="personal-laser-defense-equipment", amount=6},{type="item", name="exoskeleton-equipment", amount=3},{type="item", name="power-armor-mk2", amount=1},{type="item", name="energy-shield-mk2-equipment", amount=3},{type="item", name="battery-mk2-equipment", amount=4},{type="item", name="fusion-reactor-equipment", amount=2}}
+recipe_mk2.ingredients = {{type="item", name="personal-laser-defense-equipment", amount=6},{type="item", name="exoskeleton-equipment", amount=3},{type="item", name="power-armor-mk2", amount=1},{type="item", name="energy-shield-mk2-equipment", amount=3},{type="item", name="battery-mk2-equipment", amount=4},{type="item", name="fission-reactor-equipment", amount=2}}
 recipe_mk2.results = {{type="item", name="Mk2_kit", amount=1}}
 
 data:extend{Mk2_kit,recipe_mk2}
 
 
 
-local Mk1_kit = table.deepcopy(data.raw.item["empty-barrel"])
+local Mk1_kit = table.deepcopy(data.raw.item["barrel"])
 local Mk1_for_icon = table.deepcopy(data.raw.armor["power-armor"])
 Mk1_kit.name = "Mk1_kit"
 Mk1_kit.icons= {
@@ -54,7 +54,7 @@ recipe_mk1.results = {{type="item", name="Mk1_kit", amount=1}}
 data:extend{Mk1_kit,recipe_mk1}
 
 --Marketing beacon
-local Marketing_beacon = table.deepcopy(data.raw.item["empty-barrel"])
+local Marketing_beacon = table.deepcopy(data.raw.item["barrel"])
 local Marketing_beacon_for_icon = table.deepcopy(data.raw.item["satellite"])
 Marketing_beacon.name = "Marketing_beacon"
 Marketing_beacon.icons= {
@@ -82,12 +82,12 @@ recipe_Marketing_beacon.results = {{type="item", name="Marketing_beacon", amount
 data:extend{Marketing_beacon,recipe_Marketing_beacon}
 
 -- Nuclear battery
-local Nuclear_battery = table.deepcopy(data.raw.item["empty-barrel"])
---local Nuclear_battery_for_icon = table.deepcopy(data.raw.item["fusion-reactor-equipment"])
+local Nuclear_battery = table.deepcopy(data.raw.item["barrel"])
+--local Nuclear_battery_for_icon = table.deepcopy(data.raw.item["fission-reactor-equipment"])
 Nuclear_battery.name = "Nuclear_battery"
 Nuclear_battery.icons= {
 	{
-      icon = "__base__/graphics/icons/fusion-reactor-equipment.png",
+      icon = "__base__/graphics/icons/fission-reactor-equipment.png",
       --tint={r=0.3,g=0.1,b=1.0,a=0.5,
 		  tint={r=125,g=45,b=235,}
 		  --icon_size = 32,
@@ -134,7 +134,7 @@ data:extend{Nuclear_battery,recipe_Nuclear_battery}
 
 
 --100,000k Token
-local Token = table.deepcopy(data.raw.item["empty-barrel"])
+local Token = table.deepcopy(data.raw.item["barrel"])
 Token.name = "Token"
 Token.icons= {
    {
@@ -216,7 +216,7 @@ recipe_Productivity_module_4.results = {{type="item", name="productivity-module-
 data:extend{Productivity_module_4,recipe_Productivity_module_4}
 
 --Final Ship!
-local MegaSpaceYacht= table.deepcopy(data.raw.item["empty-barrel"])
+local MegaSpaceYacht= table.deepcopy(data.raw.item["barrel"])
 MegaSpaceYacht.name = "MegaSpaceYacht"
 MegaSpaceYacht.icons= {
    {
